@@ -8,6 +8,10 @@ public class PlayerController : MonoBehaviour
     private float horizontalInput;
     private float forwardInput;
 
+    public Camera mainCamera;
+    public Camera hoodCamera;
+    public KeyCode switchKey;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -23,5 +27,17 @@ public class PlayerController : MonoBehaviour
         horizontalInput = Input.GetAxis("Horizontal");
         transform.Rotate(Vector3.up * Time.deltaTime * turnSpeed * horizontalInput);
         //code for turning the car
+        if(Input.GetKey(switchKey))
+        {
+            mainCamera.enabled = !mainCamera.enabled;
+            hoodCamera.enabled = !hoodCamera.enabled;
+        }
+        //camera swicth
+
+        if(Input.GetKeyDown(KeyCode.R))
+        {
+            transform.position = new Vector3(0f, 0f, 0f);
+        }
+        //reset button R, for any mistakes with driving the car
     }
 }
